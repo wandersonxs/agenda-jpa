@@ -91,6 +91,20 @@ public class PessoaRepositoryTest {
         Assert.isTrue(pessoa.isPresent() == false && endereco.isPresent() == true, "Erro ao delete pessoa");
     }
 
+    @Test
+    public void testObterTodosContatosPessoa(){
+
+        // GIVEN Id da Pessoa
+        Long pessoaId = 3L;
+
+
+        // WHEN Executar consulta da pessoa trazer também dados de contatos dela
+        Optional<Pessoa> pessoa = pessoaRepository.findById(pessoaId);
+
+        // THEN Deve Incluir Pessoa e Também Endereço
+        Assert.isTrue(pessoa.get().getContatos().size() > 0 , "Erro ao buscar dados de contato da pessoa");
+    }
+
 
 
 }
